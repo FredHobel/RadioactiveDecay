@@ -1,7 +1,7 @@
 import random
 import numpy as np
 import tkinter
-from tkinter import messagebox
+from tkinter import messagebox, colorchooser
 
 
 
@@ -48,7 +48,7 @@ halflife, count = abs(halflife), abs(count)
 
 top = tkinter.Tk()
 
-top.geometry("500x400")
+top.geometry("500x200")
 
 L1 = tkinter.Label(top, text="Number of particles:")
 L1.pack( side = tkinter.LEFT)
@@ -83,7 +83,15 @@ def helloCallBack():
         tkinter.messagebox.showinfo("Results","It took " + ret + " seconds for the sample to fully decay. The proportions remaining at each halflife were " + ret2 )
 
 B1 = tkinter.Button(top, text ="Results", command = helloCallBack)
-B1.place(x = 250,y = 350)
+B1.place(x = 250,y = 150)
+
+def onChoose():
+
+        (rgb, hx) = colorchooser.askcolor()
+        top.config(bg=hx)
+
+B2 = tkinter.Button(top, text ="Color chooser", command = onChoose)
+B2.place(x = 50, y = 150)
 
 
 
