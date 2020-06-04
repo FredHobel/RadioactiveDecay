@@ -89,6 +89,8 @@ def onChoose():
 
         (rgb, hx) = colorchooser.askcolor()
         top.config(bg=hx)
+        L1.config(bg=hx)
+        L2.config(bg=hx)
 
 B2 = tkinter.Button(top, text ="Color chooser", command = onChoose)
 B2.place(x = 50, y = 150)
