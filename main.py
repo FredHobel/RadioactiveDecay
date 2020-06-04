@@ -67,13 +67,21 @@ L2.pack( side = tkinter.RIGHT)
 
 
 def helloCallBack():
-    amount = int(E1.get())
-    half = float(E2.get())
+    amount = 0
+    half = 0
     ret2 = ""
+    if E1.get() == '' or E2.get() == '':
+        amount = 0
+        half = 0
 
-    if amount < 1 or half <= 0:
-        tkinter.messagebox.showinfo("Results","Invalid entry")
-    else:
+
+    else:  
+
+        amount = int(E1.get())
+        half = float(E2.get())
+        
+
+    if amount >= 1 and half > 0:
         ret, retlist = decay(amount,half)  
         ret = str(ret)
         for i in range(len(retlist)):
@@ -81,6 +89,9 @@ def helloCallBack():
 
 
         tkinter.messagebox.showinfo("Results","It took " + ret + " seconds for the sample to fully decay. The proportions remaining at each halflife were " + ret2 )
+        
+    else:
+        tkinter.messagebox.showinfo("Results","Invalid entry")
 
 B1 = tkinter.Button(top, text ="Results", command = helloCallBack)
 B1.place(x = 250,y = 150)
