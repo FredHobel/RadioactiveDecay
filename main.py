@@ -15,9 +15,10 @@ def decay(count, halflife):
     remaining = count
     measure = 0
     tick = 0
+    percent = []
     
     while remaining > 0:
-        print(sample)
+        #print(sample)
         i = 0
         for i in range(0,count):
             
@@ -30,11 +31,20 @@ def decay(count, halflife):
                 measure = 0
             if i == count-1:
                 tick += 1
+                percent.append(remaining/count)
+
 
     time = tick*halflife
-    return time
+    return time, percent
     
+"""
+count = int(input("enter the number of particles to simulate: "))
+if count == 0:
+    count = 1
 
+halflife = float(input("enter the half life of the particles in seconds: "))
+halflife, count = abs(halflife), abs(count)
+"""
 
 top = tkinter.Tk()
 
@@ -59,11 +69,18 @@ L2.pack( side = tkinter.RIGHT)
 def helloCallBack():
     amount = int(E1.get())
     half = float(E2.get())
+    ret2 = ""
 
     if amount < 1 or half <= 0:
         tkinter.messagebox.showinfo("Results","Invalid entry")
-    else:    
-        tkinter.messagebox.showinfo("Results","It took %d seconds for the sample to fully decay." % decay(amount,half) )
+    else:
+        ret, retlist = decay(amount,half)  
+        ret = str(ret)
+        for i in range(len(retlist)):
+            ret2 += str(retlist[i]) + ', '
+
+
+        tkinter.messagebox.showinfo("Results","It took " + ret + " seconds for the sample to fully decay. The proportions remaining at each halflife were " + ret2 )
 
 B1 = tkinter.Button(top, text ="Results", command = helloCallBack)
 B1.place(x = 250,y = 350)
